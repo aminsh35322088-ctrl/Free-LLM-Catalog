@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-28T09:00:00Z",
+  "generatedAt": "2026-09-28T09:20:00Z",
   "policy": {
     "scope": "No user-supplied credentials, no account login, no billing/credits required for the catalogued free path.",
     "acceptedAuthModes": [
@@ -15,7 +15,11 @@
       "paid credits",
       "trial credits"
     ],
-    "note": "Adapter/self-hosted entries may use a local non-secret client token, but their upstream path must remain credentialless."
+    "note": "Public anonymous tokens and static placeholders may be catalogued for research/explicit adapters, but are never auto-injected by the Telegram bot.",
+    "autoInjectAuthModes": [
+      "none"
+    ],
+    "autoInjectRule": "status=verified, integration=direct-openai, enabledByDefault=true, auth.mode=none, auth.userCredentialRequired=false"
   },
   "providers": [
     {
@@ -73,6 +77,38 @@
           }
         },
         {
+          "id": "poolside/laguna-s-2.1:free",
+          "name": "Laguna S 2.1 (free)",
+          "context": 262144,
+          "output": 32768,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "nvidia/nemotron-3-ultra-550b-a55b:free",
+          "name": "Nemotron 3 Ultra (free)",
+          "context": 1000000,
+          "output": 65536,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
           "id": "dots-studio/dots-3-note-preview:free",
           "name": "Dots3-Note Preview (free)",
           "context": 512000,
@@ -90,8 +126,8 @@
           }
         },
         {
-          "id": "poolside/laguna-s-2.1:free",
-          "name": "Laguna S 2.1 (free)",
+          "id": "inclusionai/ling-3.0-flash-sante:free",
+          "name": "Ling 3.0 Flash Sante (free)",
           "context": 262144,
           "output": 32768,
           "toolCall": true,
@@ -99,6 +135,141 @@
           "modalities": {
             "input": [
               "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "inclusionai/ling-3.0-flash-fin:free",
+          "name": "Ling 3.0 Flash Fin (free)",
+          "context": 262144,
+          "output": 32768,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "qwen/qwen3.8-27b:free",
+          "name": "Qwen3.8 27B (free)",
+          "context": 262144,
+          "output": 235929,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "liquid/lfm-2.5-2.6b:free",
+          "name": "LFM2.5 2.6B (free)",
+          "context": 65536,
+          "output": 8192,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "nvidia/nemotron-3.5-lightning:free",
+          "name": "Nemotron 3.5 Lightning (free)",
+          "context": 1000000,
+          "output": 65536,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "thinkingmachines/inkling-small:free",
+          "name": "Inkling Small (free)",
+          "context": 1048576,
+          "output": 262144,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "audio"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "poolside/laguna-xs-2.1:free",
+          "name": "Laguna XS 2.1 (free)",
+          "context": 262144,
+          "output": 32768,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "cohere/north-mini-code:free",
+          "name": "North Mini Code (free)",
+          "context": 256000,
+          "output": 64000,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+          "name": "Nemotron 3 Nano Omni (free)",
+          "context": 256000,
+          "output": 65536,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "audio",
+              "video"
             ],
             "output": [
               "text"
@@ -120,12 +291,47 @@
               "text"
             ]
           }
+        },
+        {
+          "id": "openrouter/free",
+          "name": "OpenRouter Free Models Router",
+          "context": 200000,
+          "output": 32768,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "stepfun/step-3.7-flash:free",
+          "name": "Step 3.7 Flash (free)",
+          "context": 262144,
+          "output": 262144,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          }
         }
       ],
       "sources": [
         "https://kilo.ai/docs/gateway/authentication",
         "https://kilo.ai/docs/gateway/models-and-providers",
-        "https://kilo.ai/landing/free-models"
+        "https://kilo.ai/landing/free-models",
+        "https://github.com/aminsh35322088-ctrl/opencode-telegram-core/pull/6"
       ],
       "runtimeId": "kilo"
     },
@@ -346,7 +552,8 @@
       ],
       "sources": [
         "https://docs.ovhcloud.com/en/guides/public-cloud/ai-machine-learning/ai-endpoints-getting-started",
-        "https://docs.ovhcloud.com/en/guides/public-cloud/ai-machine-learning/ai-endpoints-capabilities"
+        "https://docs.ovhcloud.com/en/guides/public-cloud/ai-machine-learning/ai-endpoints-capabilities",
+        "https://github.com/aminsh35322088-ctrl/opencode-telegram-core/pull/6"
       ],
       "runtimeId": "ovh"
     },
@@ -355,7 +562,7 @@
       "name": "UncloseAI Hermes Public",
       "status": "verified",
       "integration": "direct-openai",
-      "enabledByDefault": true,
+      "enabledByDefault": false,
       "baseURL": "https://hermes.ai.unturf.com/v1",
       "modelsURL": "https://hermes.ai.unturf.com/v1/models",
       "auth": {
@@ -399,7 +606,7 @@
       "name": "AI Horde Anonymous",
       "status": "verified",
       "integration": "direct-openai",
-      "enabledByDefault": true,
+      "enabledByDefault": false,
       "baseURL": "https://oai.aihorde.net/v1",
       "modelsURL": "https://oai.aihorde.net/v1/models",
       "auth": {
