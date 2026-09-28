@@ -1,0 +1,668 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-28T09:00:00Z",
+  "policy": {
+    "scope": "No user-supplied credentials, no account login, no billing/credits required for the catalogued free path.",
+    "acceptedAuthModes": [
+      "none",
+      "public-anonymous-token",
+      "static-placeholder"
+    ],
+    "excluded": [
+      "free tiers that require signup/API keys",
+      "OAuth/account sessions",
+      "cookies supplied by the user",
+      "paid credits",
+      "trial credits"
+    ],
+    "note": "Adapter/self-hosted entries may use a local non-secret client token, but their upstream path must remain credentialless."
+  },
+  "providers": [
+    {
+      "id": "kilo-anonymous",
+      "name": "Kilo Gateway (Anonymous)",
+      "status": "verified",
+      "integration": "direct-openai",
+      "enabledByDefault": true,
+      "baseURL": "https://api.kilo.ai/api/gateway",
+      "modelsURL": "https://api.kilo.ai/api/gateway/models",
+      "auth": {
+        "mode": "none",
+        "userCredentialRequired": false
+      },
+      "limits": {
+        "note": "Anonymous free-model traffic is rate-limited per IP; Kilo documents 200 requests/hour/IP."
+      },
+      "discovery": {
+        "kind": "kilo-free",
+        "authoritative": true
+      },
+      "models": [
+        {
+          "id": "kilo-auto/free",
+          "name": "Kilo Auto Free",
+          "context": 256000,
+          "output": 32768,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "stealth/space-bunny-alpha",
+          "name": "Space Bunny Alpha",
+          "context": 1000000,
+          "output": 524288,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "dots-studio/dots-3-note-preview:free",
+          "name": "Dots3-Note Preview (free)",
+          "context": 512000,
+          "output": 460800,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "poolside/laguna-s-2.1:free",
+          "name": "Laguna S 2.1 (free)",
+          "context": 262144,
+          "output": 32768,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "nvidia/nemotron-3-super-120b-a12b:free",
+          "name": "Nemotron 3 Super (free)",
+          "context": 262144,
+          "output": 235929,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        }
+      ],
+      "sources": [
+        "https://kilo.ai/docs/gateway/authentication",
+        "https://kilo.ai/docs/gateway/models-and-providers",
+        "https://kilo.ai/landing/free-models"
+      ]
+    },
+    {
+      "id": "ovh-anonymous",
+      "name": "OVHcloud AI Endpoints (Anonymous)",
+      "status": "verified",
+      "integration": "direct-openai",
+      "enabledByDefault": true,
+      "baseURL": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
+      "modelsURL": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/models",
+      "auth": {
+        "mode": "none",
+        "userCredentialRequired": false
+      },
+      "limits": {
+        "note": "OVHcloud documents anonymous access at 2 requests/minute per IP per model."
+      },
+      "discovery": {
+        "kind": "openai-models",
+        "authoritative": true,
+        "excludePattern": "(guard|safety|moderation|embedding|rerank)"
+      },
+      "models": [
+        {
+          "id": "Qwen3.8-27B",
+          "name": "Qwen3.8 27B",
+          "context": 262144,
+          "output": 262144,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "Qwen3.6-27B",
+          "name": "Qwen3.6 27B",
+          "context": 262144,
+          "output": 262144,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "Qwen3.5-397B-A17B",
+          "name": "Qwen3.5 397B A17B",
+          "context": 262144,
+          "output": 262144,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "Qwen3.5-9B",
+          "name": "Qwen3.5 9B",
+          "context": 262144,
+          "output": 262144,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "Qwen3-Coder-30B-A3B-Instruct",
+          "name": "Qwen3 Coder 30B A3B Instruct",
+          "context": 262144,
+          "output": 262144,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "Meta-Llama-3_3-70B-Instruct",
+          "name": "Llama 3.3 70B Instruct",
+          "context": 131072,
+          "output": 131072,
+          "toolCall": true,
+          "reasoning": false,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "Mistral-Small-3.2-24B-Instruct-2506",
+          "name": "Mistral Small 3.2 24B Instruct",
+          "context": 131072,
+          "output": 131072,
+          "toolCall": true,
+          "reasoning": false,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "gpt-oss-120b",
+          "name": "GPT-OSS 120B",
+          "context": 131072,
+          "output": 131072,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "gpt-oss-20b",
+          "name": "GPT-OSS 20B",
+          "context": 131072,
+          "output": 131072,
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "Qwen2.5-VL-72B-Instruct",
+          "name": "Qwen2.5 VL 72B Instruct",
+          "context": 32768,
+          "output": 32768,
+          "toolCall": false,
+          "reasoning": false,
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "Mistral-7B-Instruct-v0.3",
+          "name": "Mistral 7B Instruct v0.3",
+          "context": 65536,
+          "output": 65536,
+          "toolCall": false,
+          "reasoning": false,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "Mistral-Nemo-Instruct-2407",
+          "name": "Mistral Nemo Instruct 2407",
+          "context": 65536,
+          "output": 65536,
+          "toolCall": false,
+          "reasoning": false,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        }
+      ],
+      "sources": [
+        "https://docs.ovhcloud.com/en/guides/public-cloud/ai-machine-learning/ai-endpoints-getting-started",
+        "https://docs.ovhcloud.com/en/guides/public-cloud/ai-machine-learning/ai-endpoints-capabilities"
+      ]
+    },
+    {
+      "id": "uncloseai-hermes",
+      "name": "UncloseAI Hermes Public",
+      "status": "verified",
+      "integration": "direct-openai",
+      "enabledByDefault": true,
+      "baseURL": "https://hermes.ai.unturf.com/v1",
+      "modelsURL": "https://hermes.ai.unturf.com/v1/models",
+      "auth": {
+        "mode": "static-placeholder",
+        "userCredentialRequired": false,
+        "value": "anonymous"
+      },
+      "limits": {
+        "note": "Public endpoint; UncloseAI documents 3 requests/second/IP for hermes.ai.unturf.com."
+      },
+      "discovery": {
+        "kind": "openai-models",
+        "authoritative": true
+      },
+      "models": [
+        {
+          "id": "Lorbus/Qwen3.6-27B-int4-AutoRound",
+          "name": "Qwen3.6 27B int4 AutoRound",
+          "context": 65536,
+          "output": 8192,
+          "toolCall": false,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        }
+      ],
+      "sources": [
+        "https://uncloseai.com/",
+        "https://uncloseai.com/inference.html"
+      ]
+    },
+    {
+      "id": "aihorde-anonymous",
+      "name": "AI Horde Anonymous",
+      "status": "verified",
+      "integration": "direct-openai",
+      "enabledByDefault": true,
+      "baseURL": "https://oai.aihorde.net/v1",
+      "modelsURL": "https://oai.aihorde.net/v1/models",
+      "auth": {
+        "mode": "public-anonymous-token",
+        "userCredentialRequired": false,
+        "value": "0000000000"
+      },
+      "limits": {
+        "note": "Volunteer queue; anonymous traffic has the lowest priority and latency can be minutes."
+      },
+      "discovery": {
+        "kind": "openai-models",
+        "authoritative": true
+      },
+      "models": [
+        {
+          "id": "aphrodite/TheDrummer/Cydonia-24B-v4.3",
+          "name": "Cydonia 24B",
+          "context": 32768,
+          "output": 4096,
+          "toolCall": false,
+          "reasoning": false,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "aphrodite/TheDrummer/Skyfall-31B-v4.2",
+          "name": "Skyfall 31B",
+          "context": 32768,
+          "output": 4096,
+          "toolCall": false,
+          "reasoning": false,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "google/gemma-4-31b",
+          "name": "Gemma 4 31B",
+          "context": 32768,
+          "output": 4096,
+          "toolCall": false,
+          "reasoning": false,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        }
+      ],
+      "sources": [
+        "https://oai.aihorde.net/",
+        "https://github.com/Haidra-Org/AI-Horde"
+      ]
+    },
+    {
+      "id": "gemini-web-guest",
+      "name": "Gemini Web Guest Bridge",
+      "status": "adapter-required",
+      "integration": "self-hosted-bridge",
+      "enabledByDefault": false,
+      "auth": {
+        "mode": "none",
+        "userCredentialRequired": false
+      },
+      "upstream": "https://gemini.google.com",
+      "sourceRepo": "https://github.com/Godde3s/gemini-free-api",
+      "models": [
+        {
+          "id": "gemini-3.6-flash",
+          "name": "Gemini 3.6 Flash",
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "gemini-3.5-flash-lite",
+          "name": "Gemini 3.5 Flash-Lite",
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "gemini-3.1-pro",
+          "name": "Gemini 3.1 Pro",
+          "toolCall": true,
+          "reasoning": true,
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        }
+      ],
+      "notes": "The upstream guest path is cookie-less. The bridge itself exposes a local client AUTH_TOKEN; that token is not an upstream credential and must never be treated as a Google credential.",
+      "sources": [
+        "https://github.com/Godde3s/gemini-free-api"
+      ]
+    },
+    {
+      "id": "duckduckgo-web",
+      "name": "Duck.ai Anonymous",
+      "status": "adapter-required",
+      "integration": "specialized-web",
+      "enabledByDefault": false,
+      "auth": {
+        "mode": "none",
+        "userCredentialRequired": false
+      },
+      "modelsURL": "https://duck.ai/duckchat/v1/models",
+      "models": [
+        {
+          "id": "gpt-5.4-mini",
+          "name": "GPT-5.4 Mini",
+          "toolCall": false,
+          "reasoning": false,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "claude-haiku-4-5",
+          "name": "Claude 4.5 Haiku",
+          "toolCall": false,
+          "reasoning": false,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "mistral-small-2603",
+          "name": "Mistral Small 4",
+          "toolCall": false,
+          "reasoning": false,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "tinfoil/gpt-oss-120b",
+          "name": "GPT-OSS 120B",
+          "toolCall": false,
+          "reasoning": false,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        {
+          "id": "tinfoil/gemma4-31b",
+          "name": "Gemma 4 31B",
+          "toolCall": false,
+          "reasoning": false,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        }
+      ],
+      "notes": "Free and anonymous, but the chat transport requires Duck.ai web-session/VQD handling; it is intentionally not injected as a generic OpenAI-compatible provider.",
+      "sources": [
+        "https://duckduckgo.com/duckduckgo-help-pages/duckai/chat-models",
+        "https://github.com/diegosouzapw/OmniRoute"
+      ]
+    },
+    {
+      "id": "cloudflare-playground",
+      "name": "Cloudflare AI Playground",
+      "status": "adapter-required",
+      "integration": "browser-websocket",
+      "enabledByDefault": false,
+      "auth": {
+        "mode": "none",
+        "userCredentialRequired": false
+      },
+      "upstream": "https://playground.ai.cloudflare.com",
+      "models": [],
+      "notes": "No account/key/cookie, but chat uses a browser-grade TLS WebSocket path. Keep it out of generic OpenAI injection until a dedicated adapter exists.",
+      "sources": [
+        "https://github.com/diegosouzapw/OmniRoute"
+      ]
+    },
+    {
+      "id": "opencode-free",
+      "name": "OpenCode Free",
+      "status": "native-contract",
+      "integration": "opencode-client-contract",
+      "enabledByDefault": false,
+      "baseURL": "https://opencode.ai/zen/v1",
+      "auth": {
+        "mode": "none",
+        "userCredentialRequired": false
+      },
+      "models": [],
+      "notes": "No API key on the free path, but requests must match OpenCode's client contract. The Telegram bot already runs OpenCode, so this should remain native instead of being duplicated as a generic custom provider.",
+      "sources": [
+        "https://opencode.ai/docs/en/zen/",
+        "https://github.com/diegosouzapw/OmniRoute"
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "id": "pollinations-text",
+      "reason": "Current text API documentation requires a Pollinations API key."
+    },
+    {
+      "id": "uncloseai-qwen",
+      "reason": "Current UncloseAI inference documentation says anonymous traffic to qwen.ai.unturf.com gets HTTP 403."
+    }
+  ]
+}
