@@ -38,3 +38,13 @@ Because this repository is private, the bot reuses its existing GitHub integrati
 ## Security rule
 
 Never add scraped account tokens, hidden cookies, OAuth refresh tokens, borrowed API keys, generated session credentials, payment-dependent trials, or credit-backed routes.
+
+## Public live registry
+
+The catalog is intentionally public and can be consumed without GitHub authentication:
+
+`https://raw.githubusercontent.com/aminsh35322088-ctrl/Free-LLM-Catalog/main/catalog.json`
+
+Consumers should poll conditionally with `ETag` / `If-None-Match`, validate `schemaVersion` and provider admission rules before applying an update, and retain a last-known-good snapshot when the network or a newer catalog is invalid.
+
+OpenCode Telegram Bot polls this public registry every five minutes. Catalog changes refresh its managed OpenCode config without requiring a bot deployment or a GitHub credential.
