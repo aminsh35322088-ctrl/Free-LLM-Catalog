@@ -126,7 +126,8 @@
         "https://kilo.ai/docs/gateway/authentication",
         "https://kilo.ai/docs/gateway/models-and-providers",
         "https://kilo.ai/landing/free-models"
-      ]
+      ],
+      "runtimeId": "kilo"
     },
     {
       "id": "ovh-anonymous",
@@ -346,7 +347,8 @@
       "sources": [
         "https://docs.ovhcloud.com/en/guides/public-cloud/ai-machine-learning/ai-endpoints-getting-started",
         "https://docs.ovhcloud.com/en/guides/public-cloud/ai-machine-learning/ai-endpoints-capabilities"
-      ]
+      ],
+      "runtimeId": "ovh"
     },
     {
       "id": "uncloseai-hermes",
@@ -389,7 +391,8 @@
       "sources": [
         "https://uncloseai.com/",
         "https://uncloseai.com/inference.html"
-      ]
+      ],
+      "runtimeId": "uncloseai"
     },
     {
       "id": "aihorde-anonymous",
@@ -464,7 +467,8 @@
       "sources": [
         "https://oai.aihorde.net/",
         "https://github.com/Haidra-Org/AI-Horde"
-      ]
+      ],
+      "runtimeId": "aihorde"
     },
     {
       "id": "gemini-web-guest",
