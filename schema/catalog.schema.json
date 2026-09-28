@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/aminsh35322088-ctrl/Free-LLM-Catalog/blob/main/schema/catalog.schema.json",
+  "title": "Free LLM Catalog",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "policy",
+    "providers"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "generatedAt": {
+      "type": "string"
+    },
+    "policy": {
+      "type": "object"
+    },
+    "providers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/provider"
+      }
+    },
+    "rejected": {
+      "type": "array"
+    }
+  },
+  "$defs": {
+    "model": {
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "context": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "output": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "toolCall": {
+          "type": "boolean"
+        },
+        "reasoning": {
+          "type": "boolean"
+        },
+        "modalities": {
+          "type": "object",
+          "properties": {
+            "input": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "output": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "provider": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "status",
+        "integration",
+        "enabledByDefault",
+        "auth",
+        "models"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "verified",
+            "adapter-required",
+            "native-contract",
+            "disabled"
+          ]
+        },
+        "integration": {
+          "type": "string"
+        },
+        "enabledByDefault": {
+          "type": "boolean"
+        },
+        "baseURL": {
+          "type": "string",
+          "format": "uri"
+        },
+        "modelsURL": {
+          "type": "string",
+          "format": "uri"
+        },
+        "auth": {
+          "type": "object",
+          "required": [
+            "mode",
+            "userCredentialRequired"
+          ],
+          "properties": {
+            "mode": {
+              "enum": [
+                "none",
+                "public-anonymous-token",
+                "static-placeholder"
+              ]
+            },
+            "userCredentialRequired": {
+              "const": false
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        },
+        "models": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/model"
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
