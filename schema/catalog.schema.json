@@ -129,18 +129,12 @@
           ],
           "properties": {
             "mode": {
-              "enum": [
-                "none",
-                "public-anonymous-token",
-                "static-placeholder"
-              ]
+              "const": "none"
             },
             "userCredentialRequired": {
               "const": false
             },
-            "value": {
-              "type": "string"
-            }
+            "value": false
           }
         },
         "models": {

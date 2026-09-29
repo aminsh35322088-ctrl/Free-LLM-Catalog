@@ -11,7 +11,9 @@ for (const provider of catalog.providers) {
   if (seen.has(provider.id)) throw new Error(`Duplicate provider id: ${provider.id}`);
   seen.add(provider.id);
   if (!Array.isArray(provider.models)) throw new Error(`${provider.id}: models must be an array`);
-  if (!provider.auth || provider.auth.userCredentialRequired !== false) throw new Error(`${provider.id}: userCredentialRequired must be false`);
+  if (!provider.auth || provider.auth.mode !== "none" || provider.auth.userCredentialRequired !== false || provider.auth.value !== undefined) {
+    throw new Error(`${provider.id}: catalog providers must require no credentials or placeholder values`);
+  }
 
   const ids = new Set();
   for (const model of provider.models) {

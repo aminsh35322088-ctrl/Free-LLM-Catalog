@@ -1,21 +1,21 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-29T06:45:00.000Z",
+  "generatedAt": "2026-09-29T07:15:42.065Z",
   "policy": {
-    "scope": "No user-supplied credentials, no account login, no billing/credits required for the catalogued free path.",
+    "scope": "No credentials or account login, no billing or credits, and no credential-like value sent by clients.",
     "acceptedAuthModes": [
-      "none",
-      "public-anonymous-token",
-      "static-placeholder"
+      "none"
     ],
     "excluded": [
       "free tiers that require signup/API keys",
       "OAuth/account sessions",
       "cookies supplied by the user",
       "paid credits",
-      "trial credits"
+      "trial credits",
+      "public anonymous API keys and static Authorization placeholders",
+      "free-labelled models behind account registration or billing setup"
     ],
-    "note": "Public anonymous tokens and static placeholders may be catalogued for research/explicit adapters, but are never auto-injected by the Telegram bot.",
+    "note": "Every provider in this catalog must be usable with no account, API key, bearer token, public anonymous token, static placeholder or user cookie. Adapter-only routes still need their own transport implementation.",
     "autoInjectAuthModes": [
       "none"
     ],
@@ -323,9 +323,9 @@
     {
       "id": "ovh-anonymous",
       "name": "OVHcloud AI Endpoints (Anonymous)",
-      "status": "verified",
+      "status": "disabled",
       "integration": "direct-openai",
-      "enabledByDefault": true,
+      "enabledByDefault": false,
       "baseURL": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
       "modelsURL": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/models",
       "auth": {
@@ -541,127 +541,7 @@
         "https://github.com/aminsh35322088-ctrl/opencode-telegram-core/pull/6"
       ],
       "runtimeId": "free-ovh",
-      "notes": "Anonymous OpenAI-compatible endpoint remains auto-enabled. OVHcloud documents a strict anonymous limit of 2 requests/minute per IP per model, so transient 429 responses are expected on shared egress; rate limiting must not make the provider disappear from the catalog or Model Center."
-    },
-    {
-      "id": "uncloseai-hermes",
-      "name": "UncloseAI Hermes Public",
-      "status": "verified",
-      "integration": "direct-openai",
-      "enabledByDefault": false,
-      "baseURL": "https://hermes.ai.unturf.com/v1",
-      "modelsURL": "https://hermes.ai.unturf.com/v1/models",
-      "auth": {
-        "mode": "static-placeholder",
-        "userCredentialRequired": false,
-        "value": "anonymous"
-      },
-      "limits": {
-        "note": "Public endpoint; UncloseAI documents 3 requests/second/IP for hermes.ai.unturf.com."
-      },
-      "discovery": {
-        "kind": "openai-models",
-        "authoritative": true
-      },
-      "models": [
-        {
-          "id": "Lorbus/Qwen3.6-27B-int4-AutoRound",
-          "name": "Qwen3.6 27B int4 AutoRound",
-          "context": 65536,
-          "output": 8192,
-          "toolCall": false,
-          "reasoning": true,
-          "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        }
-      ],
-      "sources": [
-        "https://uncloseai.com/",
-        "https://uncloseai.com/inference.html"
-      ],
-      "runtimeId": "free-uncloseai"
-    },
-    {
-      "id": "aihorde-anonymous",
-      "name": "AI Horde Anonymous",
-      "status": "verified",
-      "integration": "direct-openai",
-      "enabledByDefault": false,
-      "baseURL": "https://oai.aihorde.net/v1",
-      "modelsURL": "https://oai.aihorde.net/v1/models",
-      "auth": {
-        "mode": "public-anonymous-token",
-        "userCredentialRequired": false,
-        "value": "0000000000"
-      },
-      "limits": {
-        "note": "Volunteer queue; anonymous traffic has the lowest priority and latency can be minutes."
-      },
-      "discovery": {
-        "kind": "openai-models",
-        "authoritative": true
-      },
-      "models": [
-        {
-          "id": "aphrodite/TheDrummer/Cydonia-24B-v4.3",
-          "name": "Cydonia 24B",
-          "context": 32768,
-          "output": 4096,
-          "toolCall": false,
-          "reasoning": false,
-          "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        {
-          "id": "aphrodite/TheDrummer/Skyfall-31B-v4.2",
-          "name": "Skyfall 31B",
-          "context": 32768,
-          "output": 4096,
-          "toolCall": false,
-          "reasoning": false,
-          "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        {
-          "id": "google/gemma-4-31b",
-          "name": "Gemma 4 31B",
-          "context": 32768,
-          "output": 4096,
-          "toolCall": false,
-          "reasoning": false,
-          "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        }
-      ],
-      "sources": [
-        "https://oai.aihorde.net/",
-        "https://github.com/Haidra-Org/AI-Horde"
-      ],
-      "runtimeId": "free-aihorde"
+      "notes": "Anonymous access is documented, but credential-free chat probes for three different models returned HTTP 429 from this egress on 2026-09-29. Keep disabled until inference succeeds from the bot Railway egress. The /models listing alone is insufficient proof."
     },
     {
       "id": "gemini-web-guest",
@@ -832,24 +712,6 @@
       "sources": [
         "https://github.com/diegosouzapw/OmniRoute"
       ]
-    },
-    {
-      "id": "opencode-free",
-      "name": "OpenCode Free",
-      "status": "native-contract",
-      "integration": "opencode-client-contract",
-      "enabledByDefault": false,
-      "baseURL": "https://opencode.ai/zen/v1",
-      "auth": {
-        "mode": "none",
-        "userCredentialRequired": false
-      },
-      "models": [],
-      "notes": "No API key on the free path, but requests must match OpenCode's client contract. The Telegram bot already runs OpenCode, so this should remain native instead of being duplicated as a generic custom provider.",
-      "sources": [
-        "https://opencode.ai/docs/en/zen/",
-        "https://github.com/diegosouzapw/OmniRoute"
-      ]
     }
   ],
   "rejected": [
@@ -860,6 +722,18 @@
     {
       "id": "uncloseai-qwen",
       "reason": "Current UncloseAI inference documentation says anonymous traffic to qwen.ai.unturf.com gets HTTP 403."
+    },
+    {
+      "id": "uncloseai-hermes",
+      "reason": "Requires a static Authorization placeholder; not literal zero-credential access."
+    },
+    {
+      "id": "aihorde-anonymous",
+      "reason": "Requires the public 0000000000 API key in requests; strict policy forbids all API keys."
+    },
+    {
+      "id": "opencode-free",
+      "reason": "Official OpenCode Zen instructions require signup, billing details, and an API key, even for free-labelled models."
     }
   ]
 }
