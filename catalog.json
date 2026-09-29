@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-28T09:20:23.101Z",
+  "generatedAt": "2026-09-29T04:33:19.592Z",
   "policy": {
     "scope": "No user-supplied credentials, no account login, no billing/credits required for the catalogued free path.",
     "acceptedAuthModes": [
@@ -24,7 +24,7 @@
   "providers": [
     {
       "id": "kilo-anonymous",
-      "name": "Kilo Gateway (Anonymous)",
+      "name": "Kilo Gateway Anonymous",
       "status": "verified",
       "integration": "direct-openai",
       "enabledByDefault": true,
@@ -128,22 +128,6 @@
         {
           "id": "inclusionai/ling-3.0-flash-sante:free",
           "name": "inclusionAI: Ling 3.0 Flash Sante (free)",
-          "context": 262144,
-          "output": 32768,
-          "toolCall": true,
-          "reasoning": true,
-          "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
-          }
-        },
-        {
-          "id": "inclusionai/ling-3.0-flash-fin:free",
-          "name": "inclusionAI: Ling 3.0 Flash Fin (free)",
           "context": 262144,
           "output": 32768,
           "toolCall": true,
@@ -333,14 +317,15 @@
         "https://kilo.ai/landing/free-models",
         "https://github.com/aminsh35322088-ctrl/opencode-telegram-core/pull/6"
       ],
-      "runtimeId": "kilo"
+      "runtimeId": "free-kilo",
+      "notes": "Direct no-credential Kilo Gateway route. Runtime ID is namespaced to avoid collision with OpenCode's built-in `kilo` provider. Models are admitted only from Kilo's live isFree catalog; transient upstream 429s can still occur."
     },
     {
       "id": "ovh-anonymous",
       "name": "OVHcloud AI Endpoints (Anonymous)",
       "status": "verified",
       "integration": "direct-openai",
-      "enabledByDefault": true,
+      "enabledByDefault": false,
       "baseURL": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
       "modelsURL": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/models",
       "auth": {
@@ -555,7 +540,8 @@
         "https://docs.ovhcloud.com/en/guides/public-cloud/ai-machine-learning/ai-endpoints-capabilities",
         "https://github.com/aminsh35322088-ctrl/opencode-telegram-core/pull/6"
       ],
-      "runtimeId": "ovh"
+      "runtimeId": "free-ovh",
+      "notes": "Anonymous endpoint is genuine, but the documented 2 req/min/IP/model limit is unreliable on shared datacenter egress. Kept in the catalog but not auto-enabled."
     },
     {
       "id": "uncloseai-hermes",
@@ -599,7 +585,7 @@
         "https://uncloseai.com/",
         "https://uncloseai.com/inference.html"
       ],
-      "runtimeId": "uncloseai"
+      "runtimeId": "free-uncloseai"
     },
     {
       "id": "aihorde-anonymous",
@@ -675,7 +661,7 @@
         "https://oai.aihorde.net/",
         "https://github.com/Haidra-Org/AI-Horde"
       ],
-      "runtimeId": "aihorde"
+      "runtimeId": "free-aihorde"
     },
     {
       "id": "gemini-web-guest",
