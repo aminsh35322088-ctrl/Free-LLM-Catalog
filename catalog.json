@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-29T04:33:19.592Z",
+  "generatedAt": "2026-09-29T06:45:00.000Z",
   "policy": {
     "scope": "No user-supplied credentials, no account login, no billing/credits required for the catalogued free path.",
     "acceptedAuthModes": [
@@ -325,7 +325,7 @@
       "name": "OVHcloud AI Endpoints (Anonymous)",
       "status": "verified",
       "integration": "direct-openai",
-      "enabledByDefault": false,
+      "enabledByDefault": true,
       "baseURL": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
       "modelsURL": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/models",
       "auth": {
@@ -541,7 +541,7 @@
         "https://github.com/aminsh35322088-ctrl/opencode-telegram-core/pull/6"
       ],
       "runtimeId": "free-ovh",
-      "notes": "Anonymous endpoint is genuine, but the documented 2 req/min/IP/model limit is unreliable on shared datacenter egress. Kept in the catalog but not auto-enabled."
+      "notes": "Anonymous OpenAI-compatible endpoint remains auto-enabled. OVHcloud documents a strict anonymous limit of 2 requests/minute per IP per model, so transient 429 responses are expected on shared egress; rate limiting must not make the provider disappear from the catalog or Model Center."
     },
     {
       "id": "uncloseai-hermes",
